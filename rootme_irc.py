@@ -1,23 +1,21 @@
-import sys
-
 import irc
 from irc import client
 
-my_nickname = "daytona675"
+my_nickname = "daytona6752"
 channels = "#root-me_challenge"
+irc_server = "irc.root-me.org"
+port = 6667
 
-c =irc.client.ServerConnection(irc.client.Reactor())
-c.buffer_class = client.buffer.LineBuffer
-c.buffer_class.errors = 'replace'
+client_irc = irc.client.SimpleIRCClient()
+client_irc.connection.connect(irc_server, port, my_nickname, channels)
 
-try:
-    b = c.reactor.server().connect("irc.root-me.org",6667,my_nickname,channels)
-except irc.client.ServerConnectionError as erreur:
-        print("erreur:",erreur)
-        sys.exit(1)
+if (client_irc.connection.is_connected()):
+    print("youpi!!")
 
-b.join("#root-me_challenge")
-b.is_connected()
-b.privmsg("daytona675","hello")
-
-
+client_irc.connection.whois(irc_server)
+print(client_irc.connection.as_nick(my_nickname))
+print(client_irc.connection.get_nickname())
+print(client_irc.connection.get_server_name)
+print(client_irc.connection.info(irc_server))
+client_irc.connection.join(channels,my_nickname)
+client_irc.connection.privmsg("daytona675","bonjour le monde")
