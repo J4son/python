@@ -1,3 +1,4 @@
-### Welcome to DAYTONA675 GitHub Pages
+### GitHub of daythona675:
+==========================
 
 python scripts 
